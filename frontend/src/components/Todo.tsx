@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer, Zoom } from "react-toastify";
 
-const BACKEND_URL= "http://localhost:3000/api/v1"
 
 interface Todo {
   id: number;
@@ -27,7 +26,7 @@ export default function Todo({setToken, token}: LoginProps) {
         if (!newTodo.trim()) return;
 
 		try {
-			const response = await axios.post(`${BACKEND_URL}/todo`, { task: newTodo }, {
+			const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/todo`, { task: newTodo }, {
 				headers: { Authorization: `${token}` }
 			});
 			const todo = response.data
@@ -46,7 +45,7 @@ export default function Todo({setToken, token}: LoginProps) {
 		))
 
 		try {
-			const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { completed: !(todos.find(todo => todo.id === id)?.completed) }, {
+			const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/todo/${id}`, { completed: !(todos.find(todo => todo.id === id)?.completed) }, {
 				headers: { Authorization: `${token}` }
 			});
 
@@ -70,7 +69,7 @@ export default function Todo({setToken, token}: LoginProps) {
 			)
 		)
 
-        const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, {
+        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/todo/${id}`, {
             headers: { Authorization: `${token}` }
         });
 
@@ -88,7 +87,7 @@ export default function Todo({setToken, token}: LoginProps) {
       const fetchTodos = async () => {
         try {
           
-          const res = await axios.get(`${BACKEND_URL}/todo`, {
+          const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/todo`, {
             headers: { Authorization: `${token}` }
           });
           setTodos(res.data);

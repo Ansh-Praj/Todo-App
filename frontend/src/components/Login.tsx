@@ -23,7 +23,7 @@ export default function Login({setToken} : LoginProps) {
 
         if (isSignup) {
             try {
-                const response = await fetch('http://localhost:3000/api/v1/auth/signup', {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/signup`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -86,7 +86,7 @@ export default function Login({setToken} : LoginProps) {
         else {
             try{
 
-                const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -107,50 +107,6 @@ export default function Login({setToken} : LoginProps) {
                     return
                 }
                 
-                // if(response.status===500){
-                //     toast.update(toastID, {
-                //         render: resData.message,
-                //         type: 'error',
-                //         isLoading: false,
-                //         autoClose: 2000,
-                //         closeButton: true
-                //     })
-                //     return
-                // }
-                
-                // if(response.status===400){
-                //     toast.update(toastID, {
-                //     render: resData.message,
-                //     type: 'error',
-                //     isLoading: false,
-                //     autoClose: 2000,
-                //     closeButton: true
-                //     })
-                //     return
-                // }
-
-                // if(response.status===404){
-                //     toast.update(toastID, {
-                //     render: resData.message,
-                //     type: 'error',
-                //     isLoading: false,
-                //     autoClose: 2000,
-                //     closeButton: true
-                //     })
-                //     return
-                // }
-                
-                // if(response.status===401){
-                //     toast.update(toastID, {
-                //     render: resData.message,
-                //     type: 'error',
-                //     isLoading: false,
-                //     autoClose: 2000,
-                //     closeButton: true
-                //     })
-                //     return
-                // }
-                
                 if(response.ok){
                     localStorage.setItem('token', resData.token)
                     setToken(resData.token)
@@ -163,7 +119,6 @@ export default function Login({setToken} : LoginProps) {
                     })
                     return
                 }
-                
                 
             }
             catch (error: any) {
