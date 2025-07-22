@@ -9,4 +9,5 @@
 - **ORM**: Prisma
 - **Styling**: TailwindCSS 
 
+#### Database and Backend on [Render](https://render.com/) 
 Made this one to practice backend, postgres, prisma, bcrypt, and jwt 
